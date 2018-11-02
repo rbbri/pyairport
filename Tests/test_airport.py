@@ -7,31 +7,33 @@ from plane import Plane
 
 class airportTest(unittest.TestCase):
 
+    def setUp(self):
+            self.airport = Airport()
+            self.planes = self.airport.planes
+            self.plane = mock.Mock()
+
     def test_init(self):
-            airport = Airport()
-            planes = airport.planes
-            self.assertEqual(len(planes), 0)
+            self.assertEqual(len(self.planes), 0)
 
     def test_land_message(self):
-            plane = mock.Mock()
-            airport = Airport()
-            landing = airport.land(plane)
-            message = f"{plane} landed!"
+            landing = self.airport.land(self.plane)
+            message = f"{self.plane} landed!"
             self.assertEqual(message, landing)
 
     def test_land_add(self):
-            plane = mock.Mock()
-            airport = Airport()
-            landing = airport.land(plane)
-            planes = airport.planes
-            self.assertEqual(planes, [plane])
+            self.airport.land(self.plane)
+            self.assertEqual(self.planes, [self.plane])
 
     def test_take_off_message(self):
-            plane = mock.Mock()
-            airport = Airport()
-            take_off = airport.take_off(plane)
-            message = f"{plane} airborne!"
+            self.airport.land(self.plane)
+            take_off = self.airport.take_off(self.plane)
+            message = f"{self.plane} airborne!"
             self.assertEqual(message, take_off)
+
+    def test_take_off_remove(self):
+            self.airport.land(self.plane)
+            self.airport.take_off(self.plane)
+            self.assertEqual(self.planes, [])
 
 if __name__ == '__main__':
     unittest.main()
