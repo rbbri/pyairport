@@ -8,6 +8,7 @@ behave = "*"
 mock = "*"
 pytest = "*"
 nose = "*"
+pretend = "*"
 
 [dev-packages]
 
