@@ -9,6 +9,7 @@ mock = "*"
 pytest = "*"
 nose = "*"
 pretend = "*"
+ipython = "*"
 
 [dev-packages]
 
