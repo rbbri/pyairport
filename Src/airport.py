@@ -4,10 +4,12 @@ class Airport():
         self.planes = []
 
     def land(self, plane):
+        plane.land()
         self.__add(plane)
         return f'{plane} landed!'
 
     def take_off(self, plane):
+        plane.fly()
         self.__remove(plane)
         return f"{plane} airborne!"
 
