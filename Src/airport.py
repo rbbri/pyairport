@@ -7,15 +7,13 @@ class Airport():
         self.weather = Weather()
 
     def land(self, plane):
-        if self.weather.isStormy():
-            raise Exception('Landing aborted!')
+        self.__weatherCheck('Land')
         plane.land()
         self.__add(plane)
         return f"{plane} landed!"
 
     def take_off(self, plane):
-        if self.weather.isStormy():
-            raise Exception('Take Off aborted!')
+        self.__weatherCheck('Take Off')
         plane.fly()
         self.__remove(plane)
         return f"{plane} airborne!"
@@ -25,3 +23,7 @@ class Airport():
 
     def __add(self, plane):
         self.hangar.append(plane)
+
+    def __weatherCheck(self, process):
+        if self.weather.isStormy():
+            raise Exception(f'{process} aborted!')
